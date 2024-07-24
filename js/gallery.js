@@ -70,13 +70,14 @@ function createGalleryImg(images) {
   return images
     .map(({ preview, original, description }) => {
       return `<li class="gallery-list">
-            <img
-              class="gallery-image"
-              src="${preview}"
-              data-original="${original}"
-              alt="${description}"
-            />
-          </a>
+            <a class="gallery-link" href="${original}" >
+              <img
+                class="gallery-image"
+                src="${preview}"
+                data-original="${original}"
+                alt="${description}"
+              />
+            </a>
         </li>`;
     })
     .join("");
@@ -86,6 +87,7 @@ container.insertAdjacentHTML("beforeend", createGalleryImg(images));
 container.addEventListener("click", handleImgClick);
 
 function handleImgClick(event) {
+  event.preventDefault();
   if (event.currentTarget === event.target) {
     return;
   }
